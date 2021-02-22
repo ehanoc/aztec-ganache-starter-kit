@@ -29,6 +29,7 @@ module.exports = async (deployer, network) => {
 
     await deployer.deploy(Dividend);
     const ACEContract = await ACE.deployed(bn128.CRS);
+    console.log(`ace deployed : ${ACEContract.address}`)
     const JoinSplitFluidContract = await JoinSplitFluid.deployed();
     await ACEContract.setCommonReferenceString(bn128.CRS);
     await ACEContract.setProof(MINT_PROOF, JoinSplitFluidContract.address);

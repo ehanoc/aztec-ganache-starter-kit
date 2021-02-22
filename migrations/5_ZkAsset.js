@@ -19,12 +19,14 @@ module.exports = async (deployer, network) => {
     );
 
     // initialise the private asset 
-    await deployer.deploy(ZkAssetMintable,
+    let assetContract = await deployer.deploy(ZkAssetMintable,
       aceContract.address,
       '0x0000000000000000000000000000000000000000',
       1,
       0,
       [],
     );
+
+    console.log(`assetContract address : ${assetContract.address}`)
   }
 };
