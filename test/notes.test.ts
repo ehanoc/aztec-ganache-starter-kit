@@ -154,10 +154,14 @@ contract("Private payment", accounts => {
     expect(allowedAccess).to.equal(null)
   })
 
-  it('Why i cant rebuild the owner? ', async() => {
+  it('Should be able to find the owner of the note', async() => {
+    const owner = noteEventMinted.returnValues.owner
+
     const metadata = noteEventMinted.returnValues.metadata
     const noteFromEventLog = await aztec.note.fromEventLog(metadata.slice(0, 0xc4))
-    expect(noteFromEventLog.owner).to.equal('0x') // hmm
+    expect(noteFromEventLog.owner).to.equal('0x') // hmm? Why
+
+    expect(owner).to.equal(bob.address)
   })
 })
 
